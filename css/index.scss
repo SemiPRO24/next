@@ -1,0 +1,17 @@
+body, html { 
+  background-color: black;
+  color: white;
+  scrollbar-width: none;
+  overflow-x: hidden; 
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.page {
+  margin-top: 10vh;
+  font-family: monospace;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "First nextjs project",
+  "short_name": "next",
+  "icons": [],
+  "background_color": "#FFFFFF",
+  "description": "This is a sample nextjs page",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#000"
+}

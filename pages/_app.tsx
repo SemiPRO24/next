@@ -3,6 +3,7 @@ import App from 'next/app';
 import Router from 'next/router';
 import { initGA, logPageView } from '../utils/analytics';
 import Head from 'next/head';
+import '../styles/index.scss';
 
 export default class MyApp extends App {
   componentDidMount() {

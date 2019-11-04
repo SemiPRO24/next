@@ -1,4 +1,3 @@
-import '../styles/index.scss';
 import HelloWorld from '../components/HelloWorld';
 
 const Index = () => {

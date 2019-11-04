@@ -9,9 +9,10 @@
     "coverage": "jest --coverage --coverageReporters=html",
     "send-coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "lint": "npm run prettier-check",
-    "dev": "next",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server/index.js",
+    "heroku-postbuild": "npm run build",
     "prettier-check": "prettier --check \"./**/*.{ts,tsx}\"",
     "fix": "npm run prettier",
     "prettier": "prettier --write \"./**/*.{ts,tsx}\""

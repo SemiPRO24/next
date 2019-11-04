@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Index from './index';
-import '../css/index.scss';
+import '../styles/index.scss';
 
 class Error extends React.Component<{ statusCode: number }> {
   static getInitialProps({ res, err }: any) {

@@ -2,9 +2,6 @@
   "name": "landing-template",
   "version": "1.0.0",
   "description": "Template website",
-  "engines": {
-    "node": "12.13.0"
-  },
   "main": "index.js",
   "scripts": {
     "prebuild": "npm test",

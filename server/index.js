@@ -7,6 +7,14 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 
+const admin = require('firebase-admin');
+const serviceAccount = require('path/to/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://svpp-1532e.firebaseio.com',
+});
+
 app
   .prepare()
   .then(() => {

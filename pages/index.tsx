@@ -1,10 +1,13 @@
 import HelloWorld from '../components/HelloWorld';
+import { BaseLayout } from '../components/base-layout';
 
 const Index = () => {
   return (
-    <div className="page">
-      <HelloWorld />
-    </div>
+    <BaseLayout>
+      <div className="page">
+        <HelloWorld />
+      </div>
+    </BaseLayout>
   );
 };
 

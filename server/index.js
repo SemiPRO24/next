@@ -8,7 +8,7 @@ const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 
 const admin = require('firebase-admin');
-const serviceAccount = require('path/to/serviceAccountKey.json');
+const serviceAccount = require('../credentials/server');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

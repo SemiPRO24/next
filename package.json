@@ -12,10 +12,13 @@
     "dev": "node server/index.js",
     "build": "next build",
     "start": "NODE_ENV=production node server/index.js",
+    "export": "next export",
     "heroku-postbuild": "npm run build",
     "prettier-check": "prettier --check \"./**/*.{ts,tsx}\"",
     "fix": "npm run prettier",
-    "prettier": "prettier --write \"./**/*.{ts,tsx}\""
+    "prettier": "prettier --write \"./**/*.{ts,tsx}\"",
+    "serve": "firebase serve",
+    "deploy": "firebase deploy"
   },
   "repository": {
     "type": "git",

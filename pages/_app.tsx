@@ -1,11 +1,25 @@
 import React from 'react';
-import App from 'next/app';
+import { NextPage, NextPageContext } from 'next';
+import App, { Container } from 'next/app';
 import Router from 'next/router';
 import { initGA, logPageView } from '../utils/analytics';
 import Head from 'next/head';
 import '../styles/index.scss';
 
-export default class MyApp extends App {
+interface PageProps {
+  Component: NextPage;
+  ctx: NextPageContext;
+}
+
+export default class MyApp extends App<PageProps> {
+  static async getInitialProps({ Component, ctx }: any) {
+    return {
+      pageProps: Component.getInitialProps
+        ? await Component.getInitialProps(ctx)
+        : {},
+    };
+  }
+
   componentDidMount() {
     initGA();
     logPageView();
@@ -18,15 +32,9 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <div>
-        <Head>
-          <title>Alejandro Pacheco</title>
-          <link rel="manifest" href="/static/manifest.json" />
-          <meta name="theme-color" content="#FFFFFF" />
-          <meta name="description" content="content" />
-        </Head>
+      <Container>
         <Component {...pageProps} />
-      </div>
+      </Container>
     );
   }
 }

@@ -3,3 +3,4 @@
 /server/.next
 /server/config/dev.js
 /out
+/.vscode

@@ -34,6 +34,7 @@ export const BaseLayout = (props: TBaseLayout) => {
           property="og:description"
           content="My name is Sviatoslav Nazar and I am an software engineer."
         />
+        <link rel="manifest" href="/static/manifest.json" />
         <link
           href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
           rel="stylesheet"

@@ -1,17 +1,20 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Router from 'next/router';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
+import initStore from '../store';
 import { initGA, logPageView } from '../utils/analytics';
-import Head from 'next/head';
 import '../styles/index.scss';
 
 interface PageProps {
   Component: NextPage;
   ctx: NextPageContext;
+  store: any;
 }
 
-export default class MyApp extends App<PageProps> {
+class MyApp extends App<PageProps> {
   static async getInitialProps({ Component, ctx }: any) {
     return {
       pageProps: Component.getInitialProps
@@ -30,11 +33,15 @@ export default class MyApp extends App<PageProps> {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
-      <Container>
-        <Component {...pageProps} />
-      </Container>
+      <div>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </div>
     );
   }
 }
+
+export default withRedux(initStore)(MyApp);

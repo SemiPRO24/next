@@ -1,5 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
+import { compose } from 'recompose';
+
+import withAuthentication from '../../hocs/withAuthentication';
+import withAuthorization from '../../hocs/withAuthorization';
+import { Navigation } from '../navigation';
 
 type TBaseLayout = {
   className?: string;
@@ -8,7 +13,7 @@ type TBaseLayout = {
   children?: any;
 };
 
-export const BaseLayout = (props: TBaseLayout) => {
+const BaseLayout = (props: TBaseLayout) => {
   const { className, children, cannonical, title } = props;
 
   return (
@@ -48,10 +53,26 @@ export const BaseLayout = (props: TBaseLayout) => {
         <link rel="icon" type="image/ico" href="/static/favicon.ico" />
       </Head>
       <div className="layout-container">
+        <Navigation />
         <main className={`cover ${className}`}>
           <div className="wrapper">{children}</div>
         </main>
       </div>
     </React.Fragment>
   );
+};
+
+const BaseLayoutWithAuthentication = compose(
+  withAuthentication,
+  withAuthorization(false)
+)(BaseLayout);
+const BaseLayoutWithAuthorization = compose(
+  withAuthentication,
+  withAuthorization(true)
+)(BaseLayout);
+
+export {
+  BaseLayout,
+  BaseLayoutWithAuthentication,
+  BaseLayoutWithAuthorization,
 };

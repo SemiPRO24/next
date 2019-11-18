@@ -1,13 +1,13 @@
 import HelloWorld from '../components/HelloWorld';
-import { BaseLayout } from '../components/base-layout';
+import { BaseLayoutWithAuthentication } from '../components/base-layout';
 
 const Index = () => {
   return (
-    <BaseLayout>
+    <BaseLayoutWithAuthentication>
       <div className="page">
         <HelloWorld />
       </div>
-    </BaseLayout>
+    </BaseLayoutWithAuthentication>
   );
 };
 

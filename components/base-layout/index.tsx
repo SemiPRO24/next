@@ -66,6 +66,7 @@ const BaseLayoutWithAuthentication = compose(
   withAuthentication,
   withAuthorization(false)
 )(BaseLayout);
+
 const BaseLayoutWithAuthorization = compose(
   withAuthentication,
   withAuthorization(true)

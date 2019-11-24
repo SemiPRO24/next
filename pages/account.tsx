@@ -8,12 +8,16 @@ type AccountPageProps = {
   authUser: any;
 };
 
-const AccountPage: React.FC<AccountPageProps> = ({ authUser }) => (
-  <BaseLayoutWithAuthorization>
-    <h1>Account: {authUser.email}</h1>
-    <ChangePassword />
-  </BaseLayoutWithAuthorization>
-);
+const AccountPage: React.FC<AccountPageProps> = props => {
+  const { authUser } = props;
+
+  return (
+    <BaseLayoutWithAuthorization>
+      <h1>Account: {authUser ? authUser.email : ''}</h1>
+      <ChangePassword />
+    </BaseLayoutWithAuthorization>
+  );
+};
 
 const mapStateToProps = (state: any) => ({
   authUser: state.sessionState.authUser,

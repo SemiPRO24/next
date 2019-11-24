@@ -6,6 +6,7 @@ const Index = () => {
     <BaseLayoutWithAuthentication>
       <div className="page">
         <HelloWorld />
+        <img src="https://kawai.shikimori.one/system/clubs/main/2431.png" />
       </div>
     </BaseLayoutWithAuthentication>
   );

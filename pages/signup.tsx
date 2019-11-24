@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { BaseLayoutWithAuthentication } from '../components/base-layout';
 import { auth, db } from '../firebase/index';
 import * as routes from '../constants/routes';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 
 type SignUpPageState = {
   username: string;
@@ -57,37 +58,66 @@ export default class SignUpPage extends Component<{}, SignUpPageState> {
     return (
       <BaseLayoutWithAuthentication>
         <h1>SignUp</h1>
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={username}
-            onChange={e => this.setState({ username: e.target.value })}
-            type="text"
-            placeholder="Full Name"
-          />
-          <input
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            value={password}
-            onChange={e => this.setState({ password: e.target.value })}
-            type="password"
-            placeholder="Password"
-          />
-          <input
-            value={confirmPassword}
-            onChange={e => this.setState({ confirmPassword: e.target.value })}
-            type="password"
-            placeholder="Confirm Password"
-          />
-          <button disabled={isInvalid} type="submit">
-            Sign Up
-          </button>
 
-          {error && <p>{error.message}</p>}
-        </form>
+        <Row>
+          <Col xs={6}>
+            <Form onSubmit={this.onSubmit}>
+              <Form.Group controlId="signUpFullName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  value={username}
+                  onChange={(e: any) =>
+                    this.setState({ username: e.target.value })
+                  }
+                  type="text"
+                  placeholder="Full Name"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="signUpEmail">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  value={email}
+                  onChange={(e: any) =>
+                    this.setState({ email: e.target.value })
+                  }
+                  type="email"
+                  placeholder="Email Address"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="signUpPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  value={password}
+                  onChange={(e: any) =>
+                    this.setState({ password: e.target.value })
+                  }
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="signUpConfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  value={confirmPassword}
+                  onChange={(e: any) =>
+                    this.setState({ confirmPassword: e.target.value })
+                  }
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+              </Form.Group>
+
+              <Button disabled={isInvalid} type="submit" variant="primary">
+                Sign Up
+              </Button>
+
+              {error && <p>{error.message}</p>}
+            </Form>
+          </Col>
+        </Row>
       </BaseLayoutWithAuthentication>
     );
   }

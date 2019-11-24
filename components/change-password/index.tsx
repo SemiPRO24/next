@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 import { auth } from '../../firebase/index';
 
@@ -40,25 +41,35 @@ export class ChangePassword extends Component<{}, ChangePasswordState> {
     const isInvalid = password !== confirmPassword || password === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={password}
-          onChange={e => this.setState({ password: e.target.value })}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          value={confirmPassword}
-          onChange={e => this.setState({ confirmPassword: e.target.value })}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <button disabled={isInvalid} type="submit">
+      <Form onSubmit={this.onSubmit}>
+        <Form.Group controlId="formChangePassword">
+          <Form.Label>New Password</Form.Label>
+          <Form.Control
+            value={password}
+            onChange={(e: any) => this.setState({ password: e.target.value })}
+            type="password"
+            placeholder="New Password"
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formChangeConfirmPassword">
+          <Form.Label>Confirm New Password</Form.Label>
+          <Form.Control
+            value={confirmPassword}
+            onChange={(e: any) =>
+              this.setState({ confirmPassword: e.target.value })
+            }
+            type="password"
+            placeholder="Confirm New Password"
+          />
+        </Form.Group>
+
+        <Button disabled={isInvalid} type="submit" variant="primary">
           Reset My Password
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
-      </form>
+      </Form>
     );
   }
 }

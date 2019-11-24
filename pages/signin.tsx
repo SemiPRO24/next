@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { BaseLayoutWithAuthentication } from '../components/base-layout';
 import { auth } from '../firebase/index';
 import * as routes from '../constants/routes';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 
 type SignInPageState = {
   email: string;
@@ -47,38 +48,54 @@ export default class SignInPage extends Component<{}, SignInPageState> {
       <BaseLayoutWithAuthentication>
         <h1>SignIn</h1>
 
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            value={password}
-            onChange={e => this.setState({ password: e.target.value })}
-            type="password"
-            placeholder="Password"
-          />
-          <button disabled={isInvalid} type="submit">
-            Sign In
-          </button>
+        <Row>
+          <Col xs={6}>
+            <Form onSubmit={this.onSubmit}>
+              <Form.Group controlId="signInEmail">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  value={email}
+                  onChange={(e: any) =>
+                    this.setState({ email: e.target.value })
+                  }
+                  type="email"
+                  placeholder="Email Address"
+                />
+              </Form.Group>
 
-          {error && <p>{error.message}</p>}
-        </form>
+              <Form.Group controlId="signInPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  value={password}
+                  onChange={(e: any) =>
+                    this.setState({ password: e.target.value })
+                  }
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Group>
 
-        <p>
-          <Link href={routes.FORGET_PASSWORD}>
-            <a>Forgot Password?</a>
-          </Link>
-        </p>
+              <Button disabled={isInvalid} type="submit" variant="primary">
+                Sign In
+              </Button>
 
-        <p>
-          Don't have an account?{' '}
-          <Link href={routes.SIGN_UP}>
-            <a>Sign Up</a>
-          </Link>
-        </p>
+              {error && <p>{error.message}</p>}
+            </Form>
+
+            <p>
+              <Link href={routes.FORGET_PASSWORD}>
+                <a>Forgot Password?</a>
+              </Link>
+            </p>
+
+            <p>
+              Don't have an account?{' '}
+              <Link href={routes.SIGN_UP}>
+                <a>Sign Up</a>
+              </Link>
+            </p>
+          </Col>
+        </Row>
       </BaseLayoutWithAuthentication>
     );
   }

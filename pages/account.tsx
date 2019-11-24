@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { BaseLayoutWithAuthorization } from '../components/base-layout';
 import { ChangePassword } from '../components/change-password';
+import { Row, Col } from 'react-bootstrap';
 
 type AccountPageProps = {
   authUser: any;
@@ -14,7 +15,11 @@ const AccountPage: React.FC<AccountPageProps> = props => {
   return (
     <BaseLayoutWithAuthorization>
       <h1>Account: {authUser ? authUser.email : ''}</h1>
-      <ChangePassword />
+      <Row>
+        <Col xs={6}>
+          <ChangePassword />
+        </Col>
+      </Row>
     </BaseLayoutWithAuthorization>
   );
 };

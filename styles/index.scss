@@ -1,13 +1,13 @@
-body, html { 
+// Bootstrap 4
+@import '~bootstrap/scss/bootstrap.scss';
+
+body,
+html {
   background-color: black;
   color: white;
   scrollbar-width: none;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   overflow-y: auto;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .page {

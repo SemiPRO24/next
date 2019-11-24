@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import withAuthentication from '../../hocs/withAuthentication';
 import withAuthorization from '../../hocs/withAuthorization';
 import { Navigation } from '../navigation';
+import { Container } from 'react-bootstrap';
 
 type TBaseLayout = {
   className?: string;
@@ -14,7 +15,7 @@ type TBaseLayout = {
 };
 
 const BaseLayout = (props: TBaseLayout) => {
-  const { className, children, cannonical, title } = props;
+  const { children, cannonical, title } = props;
 
   return (
     <React.Fragment>
@@ -54,22 +55,17 @@ const BaseLayout = (props: TBaseLayout) => {
       </Head>
       <div className="layout-container">
         <Navigation />
-        <main className={`cover ${className}`}>
-          <div className="wrapper">{children}</div>
-        </main>
+        <Container>{children}</Container>
       </div>
     </React.Fragment>
   );
 };
 
-const BaseLayoutWithAuthentication = compose(
-  withAuthentication,
-  withAuthorization(false)
-)(BaseLayout);
+const BaseLayoutWithAuthentication = compose(withAuthentication)(BaseLayout);
 
 const BaseLayoutWithAuthorization = compose(
   withAuthentication,
-  withAuthorization(true)
+  withAuthorization
 )(BaseLayout);
 
 export {

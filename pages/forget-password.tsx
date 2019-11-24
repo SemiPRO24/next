@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { BaseLayoutWithAuthentication } from '../components/base-layout';
 import { auth } from '../firebase/index';
 import * as routes from '../constants/routes';
+import { Button, Row, Col, Form } from 'react-bootstrap';
 
 type ForgetPasswordPageState = {
   email: string;
@@ -47,19 +48,29 @@ export default class ForgetPasswordPage extends Component<
       <BaseLayoutWithAuthentication>
         <h1>Forget Password</h1>
 
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={this.state.email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Email Address"
-          />
-          <button disabled={isInvalid} type="submit">
-            Reset My Password
-          </button>
+        <Row>
+          <Col xs={6}>
+            <Form onSubmit={this.onSubmit}>
+              <Form.Group controlId="formForgetPasswordEmail">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  value={email}
+                  onChange={(e: any) =>
+                    this.setState({ email: e.target.value })
+                  }
+                  type="email"
+                  placeholder="Email Address"
+                />
+              </Form.Group>
 
-          {error && <p>{error.message}</p>}
-        </form>
+              <Button disabled={isInvalid} type="submit" variant="primary">
+                Reset My Password
+              </Button>
+
+              {error && <p>{error.message}</p>}
+            </Form>
+          </Col>
+        </Row>
       </BaseLayoutWithAuthentication>
     );
   }

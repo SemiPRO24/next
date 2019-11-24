@@ -1,50 +1,61 @@
 import React from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 
 import * as routes from '../../constants/routes';
 import { SignOutButton } from '../sign-out';
+import './styles.scss';
 
 type NavigationProps = {
   authUser: any;
 };
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link href={routes.LANDING}>
-        <a>Landing</a>
-      </Link>
-    </li>
-    <li>
-      <Link href={routes.HOME}>
-        <a>Home</a>
-      </Link>
-    </li>
-    <li>
-      <Link href={routes.ACCOUNT}>
-        <a>Account</a>
-      </Link>
-    </li>
-    <li>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand>SV</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link as="span">
+        <Link href={routes.LANDING}>
+          <a className="navbar-nav-link nav-link">Landing</a>
+        </Link>
+      </Nav.Link>
+      <Nav.Link as="span">
+        <Link href={routes.HOME}>
+          <a className="navbar-nav-link nav-link">Home</a>
+        </Link>
+      </Nav.Link>
+      <Nav.Link as="span">
+        <Link href={routes.ACCOUNT}>
+          <a className="navbar-nav-link nav-link">Account</a>
+        </Link>
+      </Nav.Link>
+    </Nav>
+    <Nav>
       <SignOutButton />
-    </li>
-  </ul>
+    </Nav>
+  </Navbar>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link href={routes.LANDING}>
-        <a>Landing</a>
-      </Link>
-    </li>
-    <li>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand>SV</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link as="span">
+        <Link href={routes.LANDING}>
+          <a className="navbar-nav-link nav-link">Landing</a>
+        </Link>
+      </Nav.Link>
+    </Nav>
+    <Nav>
       <Link href={routes.SIGN_IN}>
-        <a>Sign In</a>
+        <Button variant="outline-info">Sign In</Button>
       </Link>
-    </li>
-  </ul>
+      <Link href={routes.SIGN_UP}>
+        <Button variant="outline-success">Sign Up</Button>
+      </Link>
+    </Nav>
+  </Navbar>
 );
 
 const NavigationComponent: React.FC<NavigationProps> = ({ authUser }) => (

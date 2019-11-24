@@ -4,11 +4,11 @@ import Router from 'next/router';
 import { firebase } from '../firebase/index';
 import * as routes from '../constants/routes';
 
-const withAuthorization = needsAuthorization => Component => {
+const withAuthorization = Component => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
-        if (!authUser && needsAuthorization) {
+        if (!authUser) {
           Router.push(routes.SIGN_IN);
         }
       });

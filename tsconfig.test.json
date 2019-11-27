@@ -9,10 +9,7 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "types": ["jest"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,12 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": false
   },
-  "include": [
-    "./**/*",
-  ],
-  "exclude": [
-    "./tests/**/*"
-  ],
+  "include": ["./**/*"],
+  "exclude": ["./tests/**/*"],
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true
 }
